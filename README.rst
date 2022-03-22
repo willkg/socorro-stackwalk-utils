@@ -11,7 +11,7 @@ minidump-stackwalk.
 If you're not me, this is probably not helpful.
 
 :Documentation: You're reading it!
-:Bugs: https://github.com/willkg/socorro-stackwalk-compare/issues
+:Bugs: https://github.com/willkg/socorro-stackwalk-utils/issues
 :License: MPLv2
 
 
