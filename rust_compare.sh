@@ -27,6 +27,8 @@
 # https://crash-stats.mozilla.org/api/tokens/ that has "View Raw Dumps" and
 # "View Personal Identifiable Information" permissions.
 #
+# You can set CRASHSTATS_API_TOKEN as an environment variable or in a .env file.
+#
 # You must have access to protected data to use this.
 
 set -e
@@ -39,10 +41,11 @@ DOPAUSE="1"
 mkdir -p "${CACHEDIR}" || true
 mkdir -p "${RUSTDIR}" || true
 
+# Load the .env file
 export $(cat .env | grep -v '^# ' | xargs)
 
 if [ "${CRASHSTATS_API_TOKEN}" == "" ]; then
-    echo "You need to set the CRASHSTATS_API_TOKEN."
+    echo "You need to set CRASHSTATS_API_TOKEN. Exiting."
     exit 1;
 fi
 
@@ -75,6 +78,7 @@ do
         --symbols-cache="${CACHEDIR}" \
         --symbols-tmp="${CACHEDIR}" \
         --symbols-url=https://symbols.mozilla.org/ \
+        --symbols-url=https://symbols.mozilla.org/try \
         --evil-json="${DATADIR}/raw_crash/${CRASHID}" \
         --json \
         --pretty \

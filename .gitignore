@@ -1,3 +1,5 @@
 .env
 crashdata/
+crashdata_prod/
+crashdata_stage/
 tmp/
